@@ -9,18 +9,18 @@ run_analysis <- function(){
     
     library(dplyr)
     #create tables from *test.txt files
-    X_test <- read.table("test/X_test.txt")
-    y_test <- read.table("test/y_test.txt")
-    subject_test <- read.table("test/subject_test.txt")
+    X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
+    y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
+    subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
     
     #create tables from *train.txt files
-    X_train <- read.table("train/X_train.txt")
-    y_train <- read.table("train/y_train.txt")
-    subject_train <- read.table("train/subject_train.txt") 
+    X_train <- read.table("UCI HAR Dataset/train/X_train.txt")
+    y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+    subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt") 
     
     #create tables for features and activity labels
-    features <- read.table("features.txt")
-    activity_labels <- read.table("activity_labels.txt")
+    features <- read.table("UCI HAR Dataset/features.txt")
+    activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
     
     #rename cols for test data
     colnames(X_test) <- features[, 2]
@@ -62,6 +62,7 @@ run_analysis <- function(){
         summarize_all(funs(mean))
 
     
-    #write the tidy table to a text file in the working directory
-    write.table(tidySet, "tidy.txt", row.names = FALSE, col.names = TRUE, sep="\t", quote = TRUE)
+    #write the tidy table to a text file in the datasets directory
+    write.table(tidySet, "UCI HAR Dataset/tidy.txt", row.names = FALSE, col.names = TRUE, sep="\t", quote = TRUE)
+    tidySet
 }
